@@ -4,24 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
     /**
@@ -39,48 +26,45 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('guest:admin')->except('logout');
-        $this->middleware('guest:customer')->except('logout');
     }
 
-    public function showAdminLoginForm()
+    /**
+     * Show the login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
     {
-        return view('auth.login', ['url' => 'admin']);
+        return view('auth.login');
     }
 
-    public function adminLogin(Request $request)
+    /**
+     * Handle login for regular users.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function login(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email',
+            'email'   => 'required|email',
             'password' => 'required|min:6'
         ]);
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->intended('/admin');
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+            return redirect()->intended($this->redirectPath());
         }
         return back()->withInput($request->only('email', 'remember'));
     }
 
-    public function showCustomerLoginForm()
-    {
-        return view('auth.login', ['url' => 'customer']);
-    }
-
-    public function customerLogin(Request $request)
-    {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|min:6'
-        ]);
-        if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->intended('/customer');
-        }
-        return back()->withInput($request->only('email', 'remember'));
-    }
-
+    /**
+     * Handle logout for all users.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout()
     {
-        Auth::guard('admin')->logout();
-        Auth::guard('customer')->logout();
+        Auth::logout();
         return redirect('/login');
     }
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,8 @@ use App\Http\Controllers\ProductController;
 Route::view('/', 'welcome');
 Auth::routes();
 
-Route::get('/home', [ProductController::class, 'index'])-> name('home');
+Route::get('/home', [HomeController::class, 'index'])-> name('home');
+Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 Route::view('/product/create', 'product.addProduct')->name('product.create');
 Route::post('/product/create', [ProductController::class, 'store'])->name('products.store');
 Route::get('/product/update/{id}', [ProductController::class, 'showUpdate'])->name('product.showUpdate');
@@ -40,11 +42,8 @@ Route::post('/login/customer', [LoginController::class,'customerLogin']);
 Route::post('/register/admin', [RegisterController::class,'createAdmin']);
 Route::post('/register/customer', [RegisterController::class,'createCustomer']);
 
-Route::group(['middleware' => 'auth:customer'], function () {
-    Route::view('/customer', 'customer');
-});
-Route::group(['middleware' => 'auth:admin'], function () {
-    Route::view('/admin', 'admin');
-});
+Route::get('/home', ['middleware' => ['auth', 'admin'], function() {
+    return view('admin');
+}]);
 
 Route::get('logout', [LoginController::class,'logout']);
