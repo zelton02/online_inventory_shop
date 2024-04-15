@@ -28,8 +28,6 @@ Route::get('/product/update/{id}', [ProductController::class, 'showUpdate'])->na
 Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::delete('/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
-
-
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
 Route::get('/login/customer', [LoginController::class,'showCustomerLoginForm']);
 Route::get('/register/admin',
@@ -42,8 +40,12 @@ Route::post('/login/customer', [LoginController::class,'customerLogin']);
 Route::post('/register/admin', [RegisterController::class,'createAdmin']);
 Route::post('/register/customer', [RegisterController::class,'createCustomer']);
 
-Route::get('/home', ['middleware' => ['auth', 'admin'], function() {
-    return view('admin');
-}]);
+Route::group(['middleware' => 'admin'], function () {
+    Route::get('/admin', function () {
+        return view('adminDashboard');
+    });
+    
+
+});
 
 Route::get('logout', [LoginController::class,'logout']);

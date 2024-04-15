@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -24,7 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->isAdmin()) {
-            return view('admin');
+            $users = User::all();
+            $products = Product::paginate(5);;
+            return view('adminDashboard', ['users' => $users, 'products' => $products]);
         }
         return redirect('product');
     }

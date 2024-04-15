@@ -53,6 +53,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         return view('product.updateProduct', ['product' => $product]);
+
     }
 
     public function update(Request $request, $id)
@@ -76,7 +77,7 @@ class ProductController extends Controller
         $product->quantity = $request->input('quantity');
 
         $product->save();
-
+        
         return redirect()->route('home')->with('success', 'Product updated successfully!');
     }
 }
