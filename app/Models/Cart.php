@@ -33,6 +33,11 @@ class Cart extends Model
         return $this->hasOne(Order::class);
     }
 
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
+
     public function totalAmount()
     {
         return $this->cartProducts->sum(function($cartProduct){

@@ -16,14 +16,11 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('cart_id');
-            $table->string('payment_method');
             $table->string('card_number');
             $table->string('expiry_date');
             $table->string('cvv');
             $table->string('billing_address');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
             $table->timestamps();
         });
     }

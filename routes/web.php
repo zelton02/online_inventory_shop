@@ -7,6 +7,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,9 @@ Route::delete('/product/delete/{id}', [ProductController::class, 'destroy'])->na
 Route::post('/product/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/delete/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+
+Route::post('payment/process', [PaymentController::class, 'process'])->name('payment.process');
 
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::view('/user/create', 'user.addUser')->name('user.create');
@@ -45,6 +50,8 @@ Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.show');
+
+Route::get('/orders', [OrderController::class, 'index'])->name('order.show');
 
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
 Route::get('/login/customer', [LoginController::class,'showCustomerLoginForm']);

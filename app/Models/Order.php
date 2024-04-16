@@ -18,13 +18,13 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function cart()
-    {
-        return $this->belongsTo(Cart::class);
-    }
-
     public function payment()
     {
         return $this->belongsTo(Payment::class);
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
     }
 }

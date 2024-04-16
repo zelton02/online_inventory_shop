@@ -54,6 +54,8 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a href="{{ route('cart.show') }}" class="btn btn-primary">Cart</a>
+                                {{-- Show Order --}}
+                                <a href="{{ route('order.show') }}" class="btn btn-primary">Order</a>
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>

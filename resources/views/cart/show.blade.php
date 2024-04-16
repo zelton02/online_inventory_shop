@@ -43,7 +43,7 @@
 
         <div class="text-right">
             <p><strong>Total:</strong> ${{ number_format($cart->totalAmount(), 2) }}</p>
-            {{-- <a href="{{ route('cart.checkout') }}" class="btn btn-success">Proceed to Checkout</a> --}}
+            <a href="{{ route('cart.checkout') }}" class="btn btn-success">Proceed to Checkout</a>
         </div>
     @else
         <p>Your cart is empty.</p>

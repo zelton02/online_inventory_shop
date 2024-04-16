@@ -91,4 +91,17 @@ class CartController extends Controller
 
         return redirect()->route('products.show', $product->id)->with('success', 'Product added to cart successfully.');
     }
+
+    public function checkout()
+    {
+        $cart = $this->getActiveCart();
+
+        // Check cart have items
+        if ($cart->cartProducts->isEmpty()) {
+            return redirect()->route('cart.show')->with('error', 'Your cart is empty.');
+        }
+
+        // Direct to payment page
+        return view('cart.checkout', ['cart' => $cart]);
+    }
 }
