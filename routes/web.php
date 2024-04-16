@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +18,28 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::view('/', 'welcome');
 Auth::routes();
+// Route::view('/', 'home')->name('home');
+Route::get('/', [ProductController::class, 'index'])->name('home');
 
 Route::get('/home', [HomeController::class, 'index'])-> name('home');
+
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 Route::view('/product/create', 'product.addProduct')->name('product.create');
 Route::post('/product/create', [ProductController::class, 'store'])->name('products.store');
 Route::get('/product/update/{id}', [ProductController::class, 'showUpdate'])->name('product.showUpdate');
 Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::delete('/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::view('/user/create', 'user.addUser')->name('user.create');
+Route::post('/user/create', [UserController::class, 'store'])->name('user.store');
+Route::get('/user/update/{id}', [UserController::class, 'showUpdate'])->name('user.showUpdate');
+Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+
+
 
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
 Route::get('/login/customer', [LoginController::class,'showCustomerLoginForm']);
@@ -44,7 +57,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin', function () {
         return view('adminDashboard');
     });
-    
+
 
 });
 

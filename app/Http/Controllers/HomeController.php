@@ -30,6 +30,7 @@ class HomeController extends Controller
             $products = Product::paginate(5);;
             return view('adminDashboard', ['users' => $users, 'products' => $products]);
         }
-        return redirect('product');
+        
+        return redirect('/');
     }
 }
