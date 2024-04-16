@@ -13,10 +13,11 @@
         object-fit: cover;
     }
 </style>
-
 @extends('layouts.app')
 
 @section('content')
+@include('components.header')
+
 <div class="container">
     <h1>Welcome to Our Online Inventory</h1>
 
@@ -29,6 +30,8 @@
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text">Price: ${{ $product->price }}</p>
                     <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">View Details</a>
+                    <a href="{{ route('cart.addToCart', $product->id) }}" class="btn btn-primary">Add to Cart</a>
+
                 </div>
             </div>
         </div>

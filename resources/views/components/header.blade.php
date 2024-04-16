@@ -53,6 +53,21 @@
         }
 
 
+        .header-ctn {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-btns a {
+            margin-right: 10px;
+        }
+
+        .menu-toggle {
+            margin-left: auto;
+        }
+
+
+
     </style>
 </head>
 
@@ -114,25 +129,24 @@
                             <div class="cart-dropdown">
                                 <div class="cart-list" id="cart_product"></div>
                                 <div class="cart-btns">
-                                    <a href="cart.php" style="width:100%;"><i class="fa fa-edit"></i> edit cart</a>
+                                    <a href="{{ route('cart.index' )}}" style="width:100%;"><i class="fa fa-edit"></i> Edit Cart</a>
                                 </div>
                             </div>
                         </div>
                         <!-- /Cart -->
-                        <ul class="header-links pull-right">
-                            <li><a href="chat/login.php"><i class="fa fa-comment" aria-hidden="true"></i></a></li>
-                            <!-- Menu Toogle -->
-                            <div class="menu-toggle">
-                                <a href="#">
-                                    <i class="fa fa-bars"></i>
-                                    <span>Menu</span>
-                                </a>
-                            </div>
-                            <!-- /Menu Toogle -->
-                        </ul>
+
+                        <!-- Menu Toogle -->
+                        <div class="menu-toggle">
+                            <a href="#">
+                                <i class="fa fa-bars"></i>
+                                <a href="{{ route('home' )}}">Menu</a>
+                            </a>
+                        </div>
+                        <!-- /Menu Toogle -->
                     </div>
                 </div>
                 <!-- /ACCOUNT -->
+
             </div>
             <!-- row -->
         </div>
