@@ -52,8 +52,13 @@ class User extends Authenticatable
         return $this->is_admin; // this looks for an admin column in your users table
     }
 
-    public function Carts()
+    public function carts()
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

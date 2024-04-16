@@ -12,9 +12,4 @@ class Product extends Model
     protected $fillable = [
         'name', 'price', 'description', 'image_url', 'quantity'
     ];
-
-    public function carts()
-    {
-        return $this->belongsToMany(Cart::class, 'cart_products');
-    }
 }

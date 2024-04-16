@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,14 +33,18 @@ Route::get('/product/update/{id}', [ProductController::class, 'showUpdate'])->na
 Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::delete('/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
+Route::post('/product/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/delete/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::view('/user/create', 'user.addUser')->name('user.create');
 Route::post('/user/create', [UserController::class, 'store'])->name('user.store');
-Route::get('/user/update/{id}', [UserController::class, 'showUpdate'])->name('user.showUpdate');
+Route::get('/user/update/{id}', [UserController::class, 'showUpdate'])->name('user.showpebUpdate');
 Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
-
+Route::get('/cart', [CartController::class, 'index'])->name('cart.show');
 
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
 Route::get('/login/customer', [LoginController::class,'showCustomerLoginForm']);
