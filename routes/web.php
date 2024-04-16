@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,16 @@ Route::post('/product/create', [ProductController::class, 'store'])->name('produ
 Route::get('/product/update/{id}', [ProductController::class, 'showUpdate'])->name('product.showUpdate');
 Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::delete('/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+
+Route::get('/cart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
+Route::get('/cart/showCart', [CartController::class, 'storeSessionItemsToCart'])->name('cart.showCart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::view('/cart/create', 'product.addProduct')->name('cart.create');
+Route::post('/cart/create', [CartController::class, 'store'])->name('cart.store');
+Route::get('/cart/update/{id}', [CartController::class, 'showUpdate'])->name('cart.showUpdate');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/delete/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
 
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::view('/user/create', 'user.addUser')->name('user.create');
