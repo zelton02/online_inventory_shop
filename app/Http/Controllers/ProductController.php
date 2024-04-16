@@ -10,8 +10,15 @@ class ProductController extends Controller
     //
     public function index()
     {
-        $products = Product::paginate(5);
-        return view('product.home',  ['products' => $products]);
+        $products = Product::all(); // Fetch all products (you may want to paginate for large datasets)
+
+        return view('home', compact('products'));
+    }
+
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('product.showProduct', ['product' => $product]);
     }
 
     public function store(Request $request)
@@ -77,7 +84,7 @@ class ProductController extends Controller
         $product->quantity = $request->input('quantity');
 
         $product->save();
-        
+
         return redirect()->route('home')->with('success', 'Product updated successfully!');
     }
 }
