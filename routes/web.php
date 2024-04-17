@@ -48,9 +48,9 @@ Route::post('/user/create', [UserController::class, 'store'])->name('user.store'
 Route::get('/user/update/{id}', [UserController::class, 'showUpdate'])->name('user.showpebUpdate');
 Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+Route::get('/user/{id}', [UserController::class,'checkDetails'])->name('user.checkDetails');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.show');
-
 Route::get('/orders', [OrderController::class, 'index'])->name('order.show');
 
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
@@ -59,6 +59,10 @@ Route::get('/register/admin',
 [RegisterController::class,'showAdminRegisterForm']);
 Route::get('/register/customer',
 [RegisterController::class,'showCustomerRegisterForm']);
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'create']);
+
 
 Route::post('/login/admin', [LoginController::class,'adminLogin']);
 Route::post('/login/customer', [LoginController::class,'customerLogin']);

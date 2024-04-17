@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
+
 
 class UserController extends Controller
 {
@@ -77,6 +79,16 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        return redirect()->route('home')->with('success', 'User deleted successfully.');
+    }
+
+    public function checkDetails($id)
+    {
+        // Fetch the user details based on the provided ID
+        $user = User::findOrFail($id);
+
+        // Pass the user details to the view and return the view
+        return view('user.userDetail', compact('user'));
+
     }
 }

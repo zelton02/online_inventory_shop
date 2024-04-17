@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -39,8 +41,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->middleware('guest:admin');
-        $this->middleware('guest:customer');
+        // $this->middleware('guest:admin');
+        // $this->middleware('guest:customer');
     }
 
     /**
@@ -74,21 +76,31 @@ class RegisterController extends Controller
         return view('auth.register', ['url' => 'customer']);
     }
 
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $this->validator($request->all())->validate();
+        // return 
+        User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]);
+
+        return redirect()->intended('/login');
     }
 
+    // can be removed
     /**
     * @param Request $request
     *
@@ -105,6 +117,7 @@ class RegisterController extends Controller
         return redirect()->intended('login/admin');
     }
 
+    //can be removed
     /**
     * @param Request $request
     *
@@ -120,4 +133,6 @@ class RegisterController extends Controller
         ]);
         return redirect()->intended('login/customer');
     }
+
+    
 }

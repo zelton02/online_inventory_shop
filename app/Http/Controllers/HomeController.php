@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->isAdmin()) {
-            $users = User::all();
+            $users = User::paginate(5);
             $products = Product::paginate(5);;
             return view('adminDashboard', ['users' => $users, 'products' => $products]);
         }
