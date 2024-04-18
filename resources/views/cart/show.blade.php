@@ -31,10 +31,12 @@
                         </td>
                         <td>${{ number_format($cartProduct->product->price * $cartProduct->quantity, 2) }}</td>
                         <td>
-                            <form action="{{ route('cart.remove', $cartProduct->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-danger">Remove</button>
-                            </form>
+                        <form action="{{ route('cart.remove', $cartProduct->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+
                         </td>
                     </tr>
                 @endforeach
