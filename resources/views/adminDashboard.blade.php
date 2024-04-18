@@ -131,8 +131,49 @@
     </div>
 
     <div id="Order" class="tabcontent">
-        <h3>Order</h3>
-        <p>Order is the capital of France.</p> 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Orders</h2>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Ordered By</th>
+                            <th>Order Status</th>
+                            <th>Total Amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- If no orders --}}
+                        @if ($orders->count() === 0)
+                        <tr>
+                            <td colspan="4">No orders found.</td>
+                        </tr>
+                        @endif
+
+                        {{-- If there are orders --}}
+                        @foreach ($orders as $order)
+                        <tr>
+                            <td>{{ $order->id }}</td>
+                            <td>{{ $order->user->name }}</td>
+                            <td>{{ $order->status }}</td>
+                            <td>${{ $order->total_amount}}</td>
+                            <td>
+                                <a href="{{ route('admin.order.showUpdate', $order->id) }}" class="btn btn-primary">View Details</a>
+                            </td>
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-center">
+                {{ $orders->links() }}
+            </div>
+        </div>
     </div>
 
     <div id="User" class="tabcontent">

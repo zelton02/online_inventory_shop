@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -27,10 +28,10 @@ class HomeController extends Controller
     {
         if (auth()->user()->isAdmin()) {
             $users = User::paginate(5);
-            $products = Product::paginate(5);;
-            return view('adminDashboard', ['users' => $users, 'products' => $products]);
+            $products = Product::paginate(5);
+            $orders = Order::paginate(5);
+            return view('adminDashboard', ['users' => $users, 'products' => $products, 'orders' => $orders]);
         }
-        
         return redirect('/');
     }
 }

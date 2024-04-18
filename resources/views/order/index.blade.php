@@ -24,7 +24,7 @@
                 <td>{{ $order->status }}</td>
                 <td>${{ $order->cart->totalAmount()}}</td>
                 <td>
-                    <a href="{{ route('order.show', $order->id) }}" class="btn btn-primary">View Details</a>
+                    <a href="{{ route('admin.orders.edit', ['id' => $order->id]) }}" class="btn btn-sm btn-primary">Edit Status</a>
                 </td>
             </tr>
             @endforeach

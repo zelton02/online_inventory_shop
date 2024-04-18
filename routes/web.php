@@ -73,8 +73,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin', function () {
         return view('adminDashboard');
     });
-
-
+    Route::get('/admin/orders', [OrderController::class, 'index'])->name('admin.orders.index');
+    Route::get('/admin/orders/{id}/showUpdate', [OrderController::class, 'showUpdate'])->name('admin.order.showUpdate');
+    Route::post('/admin/orders/{id}/update', [OrderController::class, 'update'])->name('admin.order.update');
 });
 
 Route::get('logout', [LoginController::class,'logout']);
