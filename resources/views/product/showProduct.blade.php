@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                <img src="{{ asset('assets/image/' . $product->image_url . '.jpg') }}" class="card-img-top" alt="{{ $product->name }}" style="width: auto; height: auto;">
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text"><strong>Price:</strong> ${{ $product->price }}</p>

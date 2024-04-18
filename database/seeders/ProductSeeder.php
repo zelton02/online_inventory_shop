@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
         $products = [
             [
                 'name' => 'Laptop',
-                'image_url' => 'https://example.com/images/laptop.jpg',
+                'image_url' => 'Laptop',
                 'price' => 999.99,
                 'description' => 'High-performance laptop with SSD storage and HD display.',
                 'discount' => 10.00,
@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Smartphone',
-                'image_url' => 'https://example.com/images/smartphone.jpg',
+                'image_url' => 'Smartphone',
                 'price' => 499.99,
                 'description' => 'Latest smartphone model with dual cameras and OLED screen.',
                 'discount' => 0.00,
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Bluetooth Speaker',
-                'image_url' => 'https://example.com/images/speaker.jpg',
+                'image_url' => 'bluetoothSpeaker',
                 'price' => 79.99,
                 'description' => 'Portable Bluetooth speaker with 20W output and waterproof design.',
                 'discount' => 5.00,
@@ -42,7 +42,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Wireless Headphones',
-                'image_url' => 'https://example.com/images/headphones.jpg',
+                'image_url' => 'Wireless headphone',
                 'price' => 129.99,
                 'description' => 'Over-ear wireless headphones with noise cancellation technology.',
                 'discount' => 15.00,
@@ -50,7 +50,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Tablet',
-                'image_url' => 'https://example.com/images/tablet.jpg',
+                'image_url' => 'Tablet',
                 'price' => 299.99,
                 'description' => 'Slim and lightweight tablet with touch screen and stylus support.',
                 'discount' => 0.00,
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Gaming Console',
-                'image_url' => 'https://example.com/images/console.jpg',
+                'image_url' => 'Gaming Console',
                 'price' => 399.99,
                 'description' => 'Next-gen gaming console with 4K graphics and immersive gameplay.',
                 'discount' => 20.00,
@@ -66,7 +66,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Fitness Tracker',
-                'image_url' => 'https://example.com/images/fitness-tracker.jpg',
+                'image_url' => 'Fitness Tracker',
                 'price' => 49.99,
                 'description' => 'Activity tracker with heart rate monitor and GPS functionality.',
                 'discount' => 0.00,
@@ -74,7 +74,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Digital Camera',
-                'image_url' => 'https://example.com/images/camera.jpg',
+                'image_url' => 'Digital Camera',
                 'price' => 349.99,
                 'description' => 'Mirrorless digital camera with interchangeable lenses and 4K video recording.',
                 'discount' => 10.00,
@@ -82,7 +82,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'External SSD Drive',
-                'image_url' => 'https://example.com/images/ssd-drive.jpg',
+                'image_url' => 'External SSD Drive',
                 'price' => 129.99,
                 'description' => 'High-speed external SSD drive for data storage and backup.',
                 'discount' => 0.00,
@@ -90,7 +90,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Smart Watch',
-                'image_url' => 'https://example.com/images/smart-watch.jpg',
+                'image_url' => 'SmartWatch',
                 'price' => 199.99,
                 'description' => 'Fitness-focused smart watch with health monitoring and GPS tracking.',
                 'discount' => 5.00,

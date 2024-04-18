@@ -97,7 +97,12 @@ class RegisterController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        return redirect()->intended('/login');
+        return redirect()->route('registration.success');
+    }
+
+    public function registrationSuccess()
+    {
+        return view('auth.registration_success');
     }
 
     // can be removed

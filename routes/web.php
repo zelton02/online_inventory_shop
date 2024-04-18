@@ -62,7 +62,7 @@ Route::get('/register/customer',
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'create']);
-
+Route::get('/registration/success', [RegisterController::class, 'registrationSuccess'])->name('registration.success');
 
 Route::post('/login/admin', [LoginController::class,'adminLogin']);
 Route::post('/login/customer', [LoginController::class,'customerLogin']);
