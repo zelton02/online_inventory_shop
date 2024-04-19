@@ -26,8 +26,6 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('1234567890'),
                 'is_admin' => true,
-                'address' => '123 Admin Street',
-                'contact' => '1234567890',
             ]
         );
     }

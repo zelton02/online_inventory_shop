@@ -22,8 +22,6 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'address' => 'required|string',
-            'contact' => 'required|string',
             'is_admin' => 'boolean', // Validate the 'is_admin' field
         ]);
 
@@ -32,8 +30,6 @@ class UserController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
-        $user->address = $request->input('address');
-        $user->contact = $request->input('contact');
         $user->is_admin = $request->input('is_admin', false); // Default to false if not provided
         $user->save();
 
@@ -53,8 +49,6 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|min:6',
-            'address' => 'required|string',
-            'contact' => 'required|string',
             'is_admin' => 'boolean', // Validate the 'is_admin' field
         ]);
 
@@ -65,8 +59,6 @@ class UserController extends Controller
         if ($request->has('password')) {
             $user->password = bcrypt($request->input('password'));
         }
-        $user->address = $request->input('address');
-        $user->contact = $request->input('contact');
         $user->is_admin = $request->input('is_admin', false); // Default to false if not provided
         $user->save();
 

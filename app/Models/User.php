@@ -21,9 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'is_admin',
-        'address',
-        'contact',
+        'is_admin'
     ];
 
     protected $guard = 'is_admin';
